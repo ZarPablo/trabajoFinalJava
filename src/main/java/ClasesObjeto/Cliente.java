@@ -2,8 +2,9 @@
 package ClasesObjeto;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -21,8 +22,8 @@ public class Cliente implements Serializable {
     private String razonSocial;
     private String telefono;
     private String direccion;
-    @ManyToMany
-    private List<Servicio> servicio;
-      @OneToMany
-    private List<Incidente> incidente;
+    @ManyToMany(fetch=FetchType.LAZY)
+    private Set<Servicio> servicio;
+      @OneToMany(fetch=FetchType.LAZY)
+    private Set<Incidente> incidente;
 }
