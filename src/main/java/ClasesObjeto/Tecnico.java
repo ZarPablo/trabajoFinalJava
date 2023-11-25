@@ -1,7 +1,7 @@
 
 package ClasesObjeto;
 
-import java.util.List;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,9 +26,9 @@ public class Tecnico {
     private String dni;
     private String telefono;
     @ManyToMany
-    private List<Especialidad> especialidad;
+    private Set<Especialidad> especialidad;
     @OneToMany
-    private List<Incidente> incidentes;
+    private Set<Incidente> incidentes;
     private String notificacion;
 
 }
