@@ -13,7 +13,7 @@ public final class ClienteDAO extends DAO {
             if (cli == null) {
                 throw new Exception("Cliente no valido");
             }
-            String sql =  "INSERT INTO Cliente (cuit, razonSocial, telefono, direccion, servicio)" + "VALUES (' "+ cli.getCuit() + " ' , ' " +cli.getRazonSocial()+ " ' , ' " +cli.getTelefono()+ " ' , ' " +cli.getDireccion()+ " ' , ' " +cli.getServicio() + " ');";
+            String sql =  "INSERT INTO Cliente (cuit, razonSocial, telefono, direccion, servicio, sistemaOp)" + "VALUES (' "+ cli.getCuit() + " ' , ' " +cli.getRazonSocial()+ " ' , ' " +cli.getTelefono()+ " ' , ' " +cli.getDireccion()+ " ' , ' " +cli.getServicio() + cli.getSistemaOp() + " ');";
             insertarModificarEliminar(sql);
         }catch (Exception e) {
             throw e;
@@ -33,6 +33,7 @@ public final class ClienteDAO extends DAO {
                 cli.setDireccion(resultado.getString(4));
                 cli.setTelefono(resultado.getString(5));
                 cli.setServicio(resultado.getString(6));
+                cli.setSistemaOp(resultado.getString(7));
             }
             desconectarBase();
             return cli;
