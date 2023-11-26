@@ -12,7 +12,7 @@ public final class TecnicoDAO extends DAO {
             if (tec == null) {
                 throw new Exception("Tecnico no valido");
             }
-            String sql =  "INSERT INTO Tecnico (nombre, apellido, dni, telefono, especialidad, sistemaOp)" + "VALUES (' "+ tec.getNombre() + " ' , ' " +tec.getApellido()+ " ' , ' " +tec.getDni()+ " ' , ' " +tec.getTelefono()+ " ' , ' " +tec.getEspecialidad() + tec.getSistemaOp() + " ');";
+            String sql =  "INSERT INTO Tecnico (nombre, apellido, dni, telefono, especialidad, sistemaOp)" + "VALUES (' "+ tec.getNombre() + " ' , ' " +tec.getApellido()+ " ' , ' " +tec.getDni()+ " ' , ' " +tec.getTelefono()+ " ' , ' " +tec.getEspecialidad()+ " ' , ' " + tec.getSistemaOp() + " ');";
             insertarModificarEliminar(sql);
         }catch (Exception e) {
             throw e;
@@ -43,4 +43,27 @@ public final class TecnicoDAO extends DAO {
         }   
     }
     
+     public Collection<Tecnico> listarTecnicos() throws Exception {
+        try {
+            String sql = "SELECT nombre, apellido, especialidad, sistemaOp FROM Tecnico ";
+
+            consultarBase(sql);
+
+            Tecnico tec = null;
+            Collection<Tecnico> tecnicos = new ArrayList();
+            while (resultado.next()) {
+                tec = new Tecnico();
+                tec.setNombre(resultado.getNString(1));
+                tec.setApellido(resultado.getNString(2));
+               tec.setEspecialidad(resultado.getNString(3));
+                tec.setSistemaOp(resultado.getNString(4));
+                tecnicos.add(tec);            }
+            desconectarBase();
+            return tecnicos;
+        } catch (Exception e) {
+            e.printStackTrace();
+            desconectarBase();
+            throw new Exception("Error de sistema");
+        }
+    }
 }

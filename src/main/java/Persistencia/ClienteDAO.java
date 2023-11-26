@@ -13,7 +13,7 @@ public final class ClienteDAO extends DAO {
             if (cli == null) {
                 throw new Exception("Cliente no valido");
             }
-            String sql =  "INSERT INTO Cliente (cuit, razonSocial, telefono, direccion, servicio, sistemaOp)" + "VALUES (' "+ cli.getCuit() + " ' , ' " +cli.getRazonSocial()+ " ' , ' " +cli.getTelefono()+ " ' , ' " +cli.getDireccion()+ " ' , ' " +cli.getServicio() + cli.getSistemaOp() + " ');";
+            String sql =  "INSERT INTO Cliente (cuit, razonSocial, telefono, direccion, servicio, sistemaOp)" + "VALUES (' "+ cli.getCuit() + " ' , ' " +cli.getRazonSocial()+ " ' , ' " +cli.getTelefono()+ " ' , ' " +cli.getDireccion()+ " ' , ' " +cli.getServicio()+" ' , ' "  + cli.getSistemaOp() + " ');";
             insertarModificarEliminar(sql);
         }catch (Exception e) {
             throw e;
@@ -64,5 +64,29 @@ public final class ClienteDAO extends DAO {
             desconectarBase();
             throw new Exception("Error de sistema"); 
         }   
+    }
+     
+     public Collection<Cliente> listarClientes() throws Exception {
+        try {
+            String sql = "SELECT * FROM Cliente ";
+
+            consultarBase(sql);
+
+            Cliente cli = null;
+            Collection<Cliente> clientes = new ArrayList();
+            while (resultado.next()) {
+                cli = new Cliente();
+                cli.setCuit(resultado.getNString(2));
+                cli.setRazonSocial(resultado.getNString(3));
+                cli.setServicio(resultado.getNString(6));
+                cli.setSistemaOp(resultado.getNString(7));
+                clientes.add(cli);            }
+            desconectarBase();
+            return clientes;
+        } catch (Exception e) {
+            e.printStackTrace();
+            desconectarBase();
+            throw new Exception("Error de sistema");
+        }
     }
 }

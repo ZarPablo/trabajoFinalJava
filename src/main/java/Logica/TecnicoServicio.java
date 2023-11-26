@@ -3,6 +3,7 @@ package Logica;
 
 import ModeladoObjeto.Tecnico;
 import Persistencia.TecnicoDAO;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class TecnicoServicio {
@@ -24,12 +25,45 @@ public class TecnicoServicio {
            tec.setDni(sc.nextLine());
             System.out.println("Ingrese el telefono de contacto");
            tec.setTelefono(sc.next());
+           sc.skip("\n");
             System.out.println("Ingrese la especialidad");
-            sc.next();
            tec.setEspecialidad(sc.nextLine());
             System.out.println("Ingrese los sistemas operativos que domina");
             tec.setSistemaOp(sc.nextLine());
            dao.guardarTecnico(tec);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+     
+      public Collection<Tecnico> listarTecnicos() throws Exception {
+
+        try {
+
+            Collection<Tecnico> tecnicos = dao.listarTecnicos();
+
+            return tecnicos;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void imprimirTecnicos() throws Exception {
+        try {
+            Collection<Tecnico> tecnicos = listarTecnicos();
+            if (tecnicos.isEmpty()) {
+                throw new Exception("No existen tecnicos para mostrar");
+            } else {
+                for (Tecnico t : tecnicos) {
+                    System.out.print(t.getNombre());
+                    System.out.print(" ");
+                      System.out.print(t.getApellido());
+                       System.out.print(" ");
+                       System.out.print(t.getEspecialidad());
+                        System.out.print(" ");
+                        System.out.println(t.getSistemaOp());
+                }
+            }
         } catch (Exception e) {
             throw e;
         }

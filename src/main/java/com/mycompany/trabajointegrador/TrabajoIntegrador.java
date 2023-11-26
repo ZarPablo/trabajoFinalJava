@@ -1,7 +1,7 @@
 package com.mycompany.trabajointegrador;
 
 import Logica.ClienteServicio;
-import ModeladoObjeto.Cliente;
+import Logica.TecnicoServicio;
 import java.util.Scanner;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,8 +19,9 @@ public class TrabajoIntegrador {
 
     public static void main(String[] args) throws Exception {
         ClienteServicio cliSer = new ClienteServicio();
+        TecnicoServicio tecSer = new TecnicoServicio();
           Scanner scanner = new Scanner(System.in);
-         Cliente cli = new Cliente();
+         
        
          
           int opcion;
@@ -30,7 +31,7 @@ public class TrabajoIntegrador {
             System.out.println("1. Registrar Cliente");
             System.out.println("2. Registrar Técnico");
             System.out.println("3. Mostrar Clientes");
-            System.out.println("4. Mostrar Técnicos");
+            System.out.println("4. Mostrar Técnicos por especialidad");
             System.out.println("5. Registrar Especialidad");
             System.out.println("6. Registrar Incidente");
             System.out.println("0. Salir");
@@ -42,14 +43,14 @@ public class TrabajoIntegrador {
                 case 1:
                     cliSer.crearCliente();
                     break;                                     
-         /*       case 2:
-                   // pc.agregarTecnico(scanner);
+                case 2:
+                   tecSer.crearTecnico();
                     break;
                 case 3:
-                 //   pc.mostrarClientes();
+                  cliSer.imprimirClientes();
                     break;
                 case 4:
-                   // mostrarTecnicos();
+                   tecSer.imprimirTecnicos();
                     break;
                 case 5:
                    // ec.agregarEspecialidad();

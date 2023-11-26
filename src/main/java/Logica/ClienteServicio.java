@@ -3,6 +3,7 @@ package Logica;
 
 import ModeladoObjeto.Cliente;
 import Persistencia.ClienteDAO;
+import java.util.Collection;
 import java.util.Scanner;
 
 
@@ -28,11 +29,38 @@ public class ClienteServicio {
            cli.setTelefono(sc.next());
             System.out.println("Ingrese el servicio contratado ( SAP, Tango, otro) ");
             sc.next();
-           cli.setServicio(sc.nextLine());
+            cli.setServicio(sc.nextLine());
             System.out.println("Ingrese el sistema Operativo que utiliza");
             cli.setSistemaOp(sc.nextLine());
-           
-           dao.guardarCliente(cli);
+
+            dao.guardarCliente(cli);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public Collection<Cliente> listarClientes() throws Exception {
+
+        try {
+
+            Collection<Cliente> clientes = dao.listarClientes();
+
+            return clientes;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void imprimirClientes() throws Exception {
+        try {
+            Collection<Cliente> clientes = listarClientes();
+            if (clientes.isEmpty()) {
+                throw new Exception("No existen clientes para mostrar");
+            } else {
+                for (Cliente c : clientes) {
+                    System.out.println(c);
+                }
+            }
         } catch (Exception e) {
             throw e;
         }
