@@ -32,8 +32,7 @@ public class TrabajoIntegrador {
             System.out.println("2. Registrar Técnico");
             System.out.println("3. Mostrar Clientes");
             System.out.println("4. Mostrar Técnicos por especialidad");
-            System.out.println("5. Registrar Especialidad");
-            System.out.println("6. Registrar Incidente");
+            System.out.println("5. Ingresar Incidente Nuevo");
             System.out.println("0. Salir");
             System.out.print("Ingrese su opción: ");
 
@@ -55,19 +54,9 @@ public class TrabajoIntegrador {
                 case 5:
                    // ec.agregarEspecialidad();
                     break;
-                case 6:
-                  /*  pc.mostrarClientes();
-                    System.out.println("Ingrese el numero del cliente");
-                    nroCliente = scanner.nextLong();
-                    ic.agregarIncidente(
-                            pc.buscarClienteId(nroCliente)
-                    );
-                    break;
-                case 7:
-                    control.agregarServicio(scanner);
                 case 0:
                     System.out.println("Saliendo del programa. ¡Hasta luego!");
-                    break; */
+                    break; 
                 default:
                     System.out.println("Opción no válida. Inténtelo de nuevo.");
             }
