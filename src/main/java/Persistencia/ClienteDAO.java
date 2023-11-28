@@ -76,8 +76,11 @@ public final class ClienteDAO extends DAO {
             Collection<Cliente> clientes = new ArrayList();
             while (resultado.next()) {
                 cli = new Cliente();
+                cli.setId(resultado.getInt(1));
                 cli.setCuit(resultado.getNString(2));
                 cli.setRazonSocial(resultado.getNString(3));
+                cli.setTelefono(resultado.getString(4));
+                cli.setDireccion(resultado.getString(5));
                 cli.setServicio(resultado.getNString(6));
                 cli.setSistemaOp(resultado.getNString(7));
                 clientes.add(cli);            }

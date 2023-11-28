@@ -1,6 +1,7 @@
 package com.mycompany.trabajointegrador;
 
 import Logica.ClienteServicio;
+import Logica.IncidenteServicio;
 import Logica.TecnicoServicio;
 import java.util.Scanner;
 import javax.persistence.EntityManager;
@@ -21,6 +22,7 @@ public class TrabajoIntegrador {
         ClienteServicio cliSer = new ClienteServicio();
         TecnicoServicio tecSer = new TecnicoServicio();
           Scanner scanner = new Scanner(System.in);
+          IncidenteServicio inSer = new IncidenteServicio();
          
        
          
@@ -52,7 +54,7 @@ public class TrabajoIntegrador {
                    tecSer.imprimirTecnicos();
                     break;
                 case 5:
-                   // ec.agregarEspecialidad();
+                    inSer.iniciarIncidente();
                     break;
                 case 0:
                     System.out.println("Saliendo del programa. ¡Hasta luego!");
